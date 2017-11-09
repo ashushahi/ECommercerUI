@@ -10,7 +10,7 @@ import { IProduct } from './product';
 
 @Injectable()
 export class ProductService {
-    private _productUrl = '/api/products';
+    private _productUrl = 'http://ashusf.centralindia.cloudapp.azure.com/api/products';
 
     constructor(private _http: HttpClient) { }
 
