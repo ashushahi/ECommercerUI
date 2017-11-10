@@ -1,28 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute,Router} from '@angular/router'
 import { IProduct } from './product';
+import { ProductService } from './product.service';
 
 @Component({
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit {
-
+  errorMessage: string;
   pageTitle:string='Product Detail';
   product:IProduct;
-  constructor(private _route:ActivatedRoute,private _router:Router) { }
+  constructor(private _route:ActivatedRoute,private _router:Router,private productService: ProductService) { }
 
   ngOnInit() {
-    let id = this._route.snapshot.paramMap.get('id');
+    let id = this._route.snapshot.paramMap.get('productId');
     this.pageTitle+=id;
-    this.product = {        "productId": id,
-    "productName": "Saw",
-    "productCode": "TBX-0022",
-    "releaseDate": "May 15, 2016",
-    "description": "15-inch steel blade hand saw",
-    "price": 11.55,
-    "starRating": 3.7,
-    "imageUrl": "http://openclipart.org/image/300px/svg_to_png/27070/egore911_saw.png"};
+    this.productService.getProduct(id)
+    .subscribe(product => {this.product = product;},error => this.errorMessage = <any>error);
   }
   onBack():void{
     this._router.navigate(['/products']);

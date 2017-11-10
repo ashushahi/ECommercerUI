@@ -3,8 +3,18 @@
     {{pageTitle + ': '+product?.productName}}
   </div>
   <div class='panel-footer'>
-      <a class='btn btn-default' (click)='onBack()' style='width:80px'>
-          <i class='glyphicon glyphicon-chevron-left'></i> Back
-      </a>
+    <p>Product Id:{{product.productId}}</p>
+    <p>Product Name:{{product.productName}}</p>
+    <p>Product Code:{{product.productCode}}</p>
+    <p>Release Date:{{product.releaseDate}}</p>
+    <p>Price:{{product.price}}</p>
+    <p>Description:{{product.description}}</p>
+    <p>Star Rating:{{product.starRating}}</p>
+    <a class='btn btn-default' (click)='onBack()' style='width:80px'>
+        <i class='glyphicon glyphicon-chevron-left'></i> Back
+    </a>
+    <button class="btn btn-primary pull-right" (click)='AddToBasket()'>
+        Add TO Basket
+    </button>
   </div>
 </div>
